@@ -1,6 +1,5 @@
-# 彩云天气VIP *.caiyunapp.*,*cyapi* biz.caiyunapp.com
+# 彩云天气VIP *.caiyunapp.*,*cyapi*
 ^http[s]?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v2\/user.*$ url script-response-body https://raw.githubusercontent.com/WeiRen0/Scripts/main/cytq.js
-# ^https:\/\/biz\.caiyunapp\.com\/v2\/user\? url script-response-body https://raw.githubusercontent.com/WeiRen0/Scripts/main/cytq.js
 
 # Emby播放权限 mb3admin.com
 ^https?:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey) url script-echo-response https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/emby/unlock2.js
@@ -11,4 +10,4 @@
 # Keep解锁会员课，直播课 *keep*
 #^http[s]?:\/\/.+keep.+(athena/v7/people/my|/ad/preload|details|preview|/start|liveStream/schedule|course/v3/plans|/home/prime/page).*$ url script-response-body https://raw.githubusercontent.com/WeiRen0/Scripts/main/keep.js
 
-hostname=biz.caiyunapp.com, mb3admin.com, vas.wps.cn, account.wps.cn
+hostname=*.caiyunapp.*, *cyapi*, mb3admin.com, vas.wps.cn, account.wps.cn
