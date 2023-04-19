@@ -8,10 +8,10 @@
 ^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) url script-response-body https://raw.githubusercontent.com/510004015/Quantumult_X/Remote/Premium/WPSOffice.js
 
 # Pandora订阅管理 buy.itunes.apple.com
-^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/Pandora.js
+# ^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/Pandora.js
 
 # 图图记账 api.revenuecat.com
-^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})$ url script-response-body https://raw.githubusercontent.com/yqc007/QuantumultX/master/ToToWalletFProCrack.js
+# ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})$ url script-response-body https://raw.githubusercontent.com/yqc007/QuantumultX/master/ToToWalletFProCrack.js
 
 # Nicegram restore-access.indream.app
 https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d{5,10} url echo-response text/json echo-response https://github.com/ddgksf2013/dev/raw/main/NicegramProCrack.js
@@ -32,4 +32,4 @@ https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d{5,10} url echo-res
 # 百度文库解锁VIP文档阅读权限 appwk.baidu.com
 #^https?:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/baidu/baiduLib.js
 
-hostname=*.caiyunapp.*, *cyapi*, mb3admin.com, vas.wps.cn, account.wps.cn, buy.itunes.apple.com, api.revenuecat.com, restore-access.indream.app, mobile-api.adguard.org
+hostname=*.caiyunapp.*, *cyapi*, mb3admin.com, vas.wps.cn, account.wps.cn, restore-access.indream.app, mobile-api.adguard.org
