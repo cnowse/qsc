@@ -45,8 +45,8 @@ for (let i in inputList) {
 
 // 其它
 var others = {
-  '[Premium]': '[Premium]',
-  专线: 'Spec',
+  // '[Premium]': '[Premium]',
+  // 专线: 'Spec',
   核心: 'Kern',
   边缘: 'Edge',
   高级: 'Pro',
