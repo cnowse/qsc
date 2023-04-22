@@ -2,14 +2,14 @@
 * 作者：kiksong
 * GITHUB：https://github.com/kiksong
 * 修改自 https://github.com/qwerzl/rename.js
-* 在SubStore内对节点重命名为：emoji 国家代码 01 ...
+* 在SubStore内对节点重命名为：emoji out参数 01 ...
 * 过滤掉不规范命名的节点 例如 剩余,过期..
 * SubStore内选择"脚本操作"，填写脚本地址
 * 
 * in：机场节点名格式(en 国家代码，enf 英文全称，zh 中文全称，enl 长国家代码)
+* out：修改后的节点名格式，参数如上
 * name：每个节点前面添加自义定机场名
-* clear: 过滤掉关键词里正则匹配的对应节点
-* 如果一个地区只有一个节点，则去除它的"1"
+* clear: 过滤掉关键词里正则匹配的对应节点； 如果一个地区只有一个节点，则去除它的"1"
 */
 
 // 正则过滤高倍率 ((?!.*(1|0.\d))\d+x|ˣ²|ˣ³|ˣ⁴|ˣ⁵|ˣ¹⁰ˣ)
@@ -34,7 +34,19 @@ switch ($arguments['in']) {
     var inputList = zh;
 };
 
-var outputList = en
+switch ($arguments['out']) {
+  case 'en':
+    var outputList = en;
+    break;
+  case 'enf':
+    var outputList = enf;
+    break;
+  case 'enl':
+    var outputList = enl;
+    break;
+  default:
+    var outputList = zh;
+};
 
 var countries = {};
 for (let i in inputList) {
@@ -124,7 +136,7 @@ var autofill = parseInt($arguments.autofill) || false;
 // 获取机场名
 const airport = ($arguments.name == undefined) ? '' : decodeURI($arguments.name);
 
-//删除非必要的1
+// 删除非必要的1
 function stripOnes(proxies) {
   Object.keys(countries).forEach((item, index, array) => {
     if (countries[item][1] === 1) {
@@ -136,16 +148,6 @@ function stripOnes(proxies) {
     };
   });
   return proxies
-};
-
-function getFlagEmoji(countryCode) {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map(char => 127397 + char.charCodeAt());
-  return String
-    .fromCodePoint(...codePoints)
-    .replace(/🇹🇼/g, '🇨🇳');
 };
 
 // 简繁转换
@@ -169,27 +171,26 @@ function simplify(cc) {
 // 主函数
 function operator(proxies) {
   proxies.map((res) => {
-    const resultArray = [];
+    const resultArray = [airport];
     var matched = false
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
         countries[elem][1] += 1;
-        var flag = getFlagEmoji(countries[elem][0])
         if (!autofill) {
-          resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
+          resultArray.push(countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
         } else {
-          resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
+          resultArray.push(countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
         }
         matched = true
         break;
       };
     };
     if (!matched) {
-      resultArray.push(airport, res.name);
+      resultArray.push(res.name);
     };
     Object.keys(others).forEach((elem, index) => {
       if (simplify(res.name).indexOf(elem) !== -1) {
-        resultArray.splice(3, 0, others[elem]);
+        resultArray.splice(2, 0, others[elem]);
 
       }
     });
