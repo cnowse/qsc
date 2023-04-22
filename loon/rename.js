@@ -179,9 +179,6 @@ function simplify(cc) {
 function operator(proxies) {
   proxies.map((res) => {
     const resultArray = [];
-    if (res.name.match(/(\b(?i)UK)/i)) {
-      res.name = 'GB'
-    }
     var matched = false
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
