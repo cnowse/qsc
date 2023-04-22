@@ -176,10 +176,11 @@ function operator(proxies) {
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
         countries[elem][1] += 1;
+        var flag = getFlagEmoji(countries[elem][0])
         if (!autofill) {
-          resultArray.push(countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
+          resultArray.push(flag, countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
         } else {
-          resultArray.push(countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
+          resultArray.push(flag, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
         }
         matched = true
         break;
@@ -199,7 +200,6 @@ function operator(proxies) {
   if ($arguments.clear) {
     proxies = proxies.filter(item => !nameclear.test(item.name));
     proxies = stripOnes(proxies);
-    proxies = proxies.map(p => p.name = getFlagEmoji(p.name.substring(1, p.name.indexOf(" "))) + " " + p.name)
   };
   return proxies;
 }
