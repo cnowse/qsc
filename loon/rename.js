@@ -27,16 +27,18 @@ switch ($arguments['in']) {
     var inputList = zh;
 };
 
-switch ($arguments['out']) {
-  case 'en':
-    var outputList = en;
-    break;
-  case 'enf':
-    var outputList = enf;
-    break;
-  default:
-    var outputList = zh;
-};
+var outputList = en
+
+// switch ($arguments['out']) {
+//   case 'en':
+//     var outputList = en;
+//     break;
+//   case 'enf':
+//     var outputList = enf;
+//     break;
+//   default:
+//     var outputList = zh;
+// };
 
 var countries = {};
 for (let i in inputList) {
@@ -148,7 +150,7 @@ function getFlagEmoji(countryCode) {
   return String
     .fromCodePoint(...codePoints)
     .replace(/🇹🇼/g, '🇨🇳');
-}
+};
 
 // 简繁转换
 function charPYStr() {
@@ -171,16 +173,16 @@ function simplify(cc) {
 // 主函数
 function operator(proxies) {
   proxies.map((res) => {
-    const resultArray = [airport];
+    const resultArray = [];
     var matched = false
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
         countries[elem][1] += 1;
         var flag = getFlagEmoji(countries[elem][0])
         if (!autofill) {
-          resultArray.push(flag, countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
+          resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(2, '0'));
         } else {
-          resultArray.push(flag, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
+          resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
         }
         matched = true
         break;
