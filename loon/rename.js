@@ -27,18 +27,18 @@ switch ($arguments['in']) {
     var inputList = zh;
 };
 
-var outputList = en
+// var outputList = en
 
-// switch ($arguments['out']) {
-//   case 'en':
-//     var outputList = en;
-//     break;
-//   case 'enf':
-//     var outputList = enf;
-//     break;
-//   default:
-//     var outputList = zh;
-// };
+switch ($arguments['out']) {
+  case 'en':
+    var outputList = en;
+    break;
+  case 'enf':
+    var outputList = enf;
+    break;
+  default:
+    var outputList = zh;
+};
 
 var countries = {};
 for (let i in inputList) {
@@ -200,8 +200,8 @@ function operator(proxies) {
     res.name = resultArray.join(' ');
   });
   if ($arguments.clear) {
-    proxies = proxies.filter(item => !nameclear.test(item.name));
     proxies = stripOnes(proxies);
+    proxies = proxies.filter(item => !nameclear.test(item.name));
   };
   return proxies;
 }
