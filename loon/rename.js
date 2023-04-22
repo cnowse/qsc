@@ -194,7 +194,7 @@ function operator(proxies) {
       };
     };
     if (!matched) {
-      resultArray.push(res.name);
+      resultArray.push(airport, res.name);
     };
     Object.keys(others).forEach((elem, index) => {
       if (simplify(res.name).indexOf(elem) !== -1) {
