@@ -86,8 +86,10 @@ function simplify(cc) {
   return str;
 }
 
-const DELIMITER = "|"; // 分隔符
+const $ = $substore;
 
+let nodes = [];
+const DELIMITER = "|"; // 分隔符
 const { isLoon, isSurge, isQX } = $substore.env;
 
 let target; // 节点转换的目标类型
@@ -100,7 +102,7 @@ if (isLoon) {
 }
 
 async function operator(proxies) {
-  console.log("✅💕初始节点个数 = " + proxies.length);
+  console.log("✅💕初始节点个数 =" + proxies.length);
 
   let support = false;
   if (isLoon || isQX) {
@@ -133,15 +135,15 @@ async function operator(proxies) {
     await sleep(1000);
     i += BATCH_SIZE;
   }
-
-  // 去除重复的节点
-  // 直接写proxies = removeDuplicateName(proxies);不生效
+  // 去除重复的节点，判断是否重复就是节点名中的 IP
   proxies = removeDuplicateName(proxies);
   // 再加个序号
   for (let j = 0; j < proxies.length; j++) {
     const index = (j + 1).toString().padStart(2, '0');
     proxies[j].name = proxies[j].name + DELIMITER + index;
   }
+
+  proxies = filterByQC(proxies);
 
   proxies.forEach((res) => {
     const resultArray = [airport];
@@ -175,12 +177,12 @@ async function operator(proxies) {
     res.name = resultArray.join(" ");
   });
 
-  if ($arguments.clear) {
-    proxies = stripOnes(proxies);
-    proxies = proxies.filter(item => !nameclear.test(item.name));
-  }
-
   return proxies;
+}
+
+function filterByQC(proxies) {
+  // 过滤出名字含有QC等节点
+  return proxies.map(p => p.name.indexOf("QC") !== -1);
 }
 
 // 根据节点名字去除重复的节点
@@ -190,7 +192,7 @@ function removeDuplicateName(arr) {
   for (const e of arr) {
     if (!nameSet.has(e.name) && e.name.endsWith("|QC")) {
       nameSet.add(e.name);
-      e.name = e.name.substring(0, e.name.lastIndexOf(DELIMITER));
+      e.name = e.name.substring(0, e.name.indexOf(DELIMITER));
       result.push(e);
     }
   }
@@ -206,12 +208,12 @@ async function queryIpApi(proxy) {
     let node = ProxyUtils.produce([proxy], target);
 
     // Loon 需要去掉节点名字
-     if (isLoon) {
+    if (isLoon) {
       const s = node.indexOf("=");
       node = node.substring(s + 1);
     }
     // QX 只要 tag 的名字，目前 QX 本身不支持
-     const QXTag = node.substring(node.lastIndexOf("=") + 1);
+    const QXTag = node.substring(node.lastIndexOf("=") + 1);
     const opts = {
       policy: QXTag
     };
@@ -221,7 +223,7 @@ async function queryIpApi(proxy) {
       url,
       headers,
       opts: opts, // QX 的写法
-       node: node,
+      node: node,
       "policy-descriptor": node
     }).then(resp => {
       const data = JSON.parse(resp.body);
@@ -238,6 +240,5 @@ async function queryIpApi(proxy) {
   });
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
+
