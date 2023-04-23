@@ -177,6 +177,11 @@ async function operator(proxies) {
     res.name = resultArray.join(" ");
   });
 
+  if ($arguments.clear) {
+    proxies = stripOnes(proxies);
+    proxies = proxies.filter(item => !nameclear.test(item.name));
+  }
+
   return proxies;
 }
 
