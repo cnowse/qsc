@@ -178,7 +178,7 @@ async function operator(proxies) {
       }
     }));
 
-    await sleep(400);
+    await sleep(250);
     i += BATCH_SIZE;
   }
   // 去除重复的节点
@@ -275,7 +275,7 @@ async function queryIpApi(proxy) {
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => {
         reject(new Error("请求超时"));
-      }, 800); // 超时 延迟 时间ms
+      }, 400); // 超时 延迟 时间ms
     });
 
     const queryPromise = $.http.get({
