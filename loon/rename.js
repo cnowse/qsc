@@ -80,6 +80,8 @@ others = Object.assign({}, additionalOthers, others);
 
 var autofill = parseInt($arguments.autofill) || false;
 
+var nx = ($arguments.nx == undefined) ? '' : decodeURI($arguments.nx);
+
 // 获取机场名
 const airport = ($arguments.name == undefined) ? '' : decodeURI($arguments.name);
 
@@ -127,6 +129,17 @@ function simplify(cc) {
 
 // 主函数
 function operator(proxies) {
+  proxies = proxies.filter(item => !nameclear.test(item.name));
+  proxies = proxies.filter((res) => {
+    if(nx != '') {
+      if (res.name.match(nx)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return true;
+  });
   proxies.map((res) => {
     const resultArray = [];
     var matched = false
@@ -164,7 +177,6 @@ function operator(proxies) {
   });
   if ($arguments.clear) {
     proxies = stripOnes(proxies);
-    proxies = proxies.filter(item => !nameclear.test(item.name));
   };
   return proxies;
 }
