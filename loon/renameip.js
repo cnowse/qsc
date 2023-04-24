@@ -195,6 +195,7 @@ proxies.forEach((res) => {
   for (const elem of Object.keys(countries)) {
     if (simplify(res.name).indexOf(elem) !== -1) {
       countries[elem][1] += 1;
+      var flag = getFlagEmoji(countries[elem][0])
       if (!autofill) {
         resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(1, '0'));
       } else {
