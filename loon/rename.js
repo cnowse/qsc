@@ -80,8 +80,6 @@ others = Object.assign({}, additionalOthers, others);
 
 var autofill = parseInt($arguments.autofill) || false;
 
-var nx = ($arguments.nx == undefined) ? '' : decodeURI($arguments.nx);
-
 // 获取机场名
 const airport = ($arguments.name == undefined) ? '' : decodeURI($arguments.name);
 
@@ -91,7 +89,7 @@ function stripOnes(proxies) {
     if (countries[item][1] === 1) {
       proxies.map((res) => {
         if (res.name.indexOf(countries[item][0]) !== -1) {
-          res.name = res.name.replace("1", '').replace('0', '');
+          res.name = res.name.replace(/1|0/g, '')//.replace('0', '');
         };
       });
     };
@@ -130,16 +128,6 @@ function simplify(cc) {
 // 主函数
 function operator(proxies) {
   proxies = proxies.filter(item => !nameclear.test(item.name));
-  proxies = proxies.filter((res) => {
-    if(nx != '') {
-      if (res.name.match(nx)) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-    return true;
-  });
   proxies.map((res) => {
     const resultArray = [];
     var matched = false
@@ -175,8 +163,6 @@ function operator(proxies) {
     });
     res.name = resultArray.join(' ');
   });
-  if ($arguments.clear) {
-    proxies = stripOnes(proxies);
-  };
+  proxies = stripOnes(proxies);
   return proxies;
 }
