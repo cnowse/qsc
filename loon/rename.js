@@ -2,14 +2,14 @@
 * 作者：kiksong
 * GITHUB：https://github.com/kiksong
 * 修改自 https://github.com/qwerzl/rename.js
-* 在SubStore内对节点重命名为：name emoji 国家代码 1 ...
+*
+* 在SubStore内对节点重命名为：[name] emoji 国家代码 [1] ...
 * 过滤掉不规范命名的节点 例如 剩余,过期..
 * SubStore内选择"脚本操作"，填写脚本地址
 * 
-* in：机场节点名格式(en 国家代码，enf 英文全称，zh 中文全称，enl 长国家代码)
+* in：机场节点名格式(en 国家代码 SG，enf 英文全称 Singapore，zh 中文全称 新加坡，enl 长国家代码 SGP)
 * name：每个节点前面添加自义定机场名
-* clear: 过滤掉关键词里正则匹配的对应节点，如果一个地区只有一个节点，则去除它的"1"
-* autofill：2 -> 序号改为 01 ；3 -> 序号改为 001 （单个节点去除需要功能会失效）
+* autofill：2 -> 序号改为 01 ；3 -> 序号改为 001 （单个节点去除需要功能会失效），不加默认 1
 * others：json -> 指定修改格式，例如倍率 5x，可以保留下来
 */
 
