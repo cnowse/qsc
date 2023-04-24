@@ -275,7 +275,7 @@ async function queryIpApi(proxy) {
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => {
         reject(new Error("请求超时"));
-      }, 400); // 超时 延迟 时间ms
+      }, 800); // 超时 延迟 时间ms
     });
 
     const queryPromise = $.http.get({
