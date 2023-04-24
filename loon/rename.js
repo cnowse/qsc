@@ -83,7 +83,7 @@ var autofill = parseInt($arguments.autofill) || false;
 // 获取机场名
 const airport = ($arguments.name == undefined) ? '' : decodeURI($arguments.name);
 
-//删除非必要的1
+// 删除非必要的1
 function stripOnes(proxies) {
   Object.keys(countries).forEach((item, index, array) => {
     if (countries[item][1] === 1) {
@@ -130,6 +130,14 @@ function operator(proxies) {
   proxies.map((res) => {
     const resultArray = [];
     var matched = false
+    var regex = /UK/i
+    if (regex.test(res.name)) {
+      if(res.name.indexOf('uk') != -1) {
+        res.name = res.name.replace('uk', 'GB')
+      } else {
+        res.name = res.name.replace('UK', 'GB')
+      }
+    }
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
         countries[elem][1] += 1;
