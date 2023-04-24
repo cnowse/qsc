@@ -178,7 +178,7 @@ async function operator(proxies) {
       }
     }));
 
-    await sleep(100);
+    await sleep(400);
     i += BATCH_SIZE;
   }
   // 去除重复的节点
@@ -288,7 +288,7 @@ async function queryIpApi(proxy) {
       const body = resp.body;
       const data = JSON.parse(body);
       if (data.status === "success") {
-        // 地区代码|地区名称|IP ：SG|新加坡|13.215.162.99
+        // 地区名称|IP ：新加坡|13.215.162.99
         const nodeInfo = data.country + DELIMITER + data.query+ "|QC";
         resourceCache.set(id, nodeInfo);
         resolve(nodeInfo);
