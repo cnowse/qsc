@@ -1,9 +1,8 @@
-// 正则过滤高倍率 (高倍|((?!.*(1|0\.\d))\d+倍|x|ˣ²|ˣ³|ˣ⁴|ˣ⁵|ˣ¹⁰))
-const nameclear = /(套餐|到期|有效|剩余|版本|已用|过期|失联|测试|官方|网址|备用|群|TEST)/i;
+const en = ['VA', 'GU', 'HK', 'CH', 'KR', 'LU', 'AE', 'GB', 'HK', 'MO', 'TW', 'JP', 'KR', 'SG', 'SG', 'US', 'GB', 'FR', 'DE', 'AU', 'AU', 'AF', 'AL', 'DZ', 'AO', 'AR', 'AM', 'AT', 'AZ', 'BH', 'BD', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BA', 'BW', 'BR', 'VG', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CO', 'KM', 'CG', 'CD', 'CR', 'HR', 'CY', 'CZ', 'DK', 'DJ', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FJ', 'FI', 'GA', 'GM', 'GE', 'GH', 'GR', 'GL', 'GT', 'GN', 'GY', 'HT', 'HN', 'HU', 'IS', 'IN', 'ID', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'CI', 'JM', 'JO', 'KZ', 'KE', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MR', 'MU', 'MX', 'MD', 'MC', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NP', 'NL', 'NZ', 'NI', 'NE', 'NG', 'KP', 'NO', 'OM', 'PK', 'PA', 'PY', 'PE', 'PH', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'SM', 'SA', 'SN', 'RS', 'SL', 'SK', 'SI', 'SO', 'ZA', 'ES', 'LK', 'SD', 'SR', 'SZ', 'SE', 'CH', 'SY', 'TJ', 'TZ', 'TH', 'TG', 'TO', 'TR', 'TN', 'TR', 'TM', 'VI', 'UG', 'UA', 'AE', 'AE', 'UY', 'UZ', 'VA', 'VE', 'VN', 'YE', 'YU', 'ZR', 'ZM', 'ZW', 'BD', 'CZ', 'AD', 'Chuncheon', 'Seoul', 'Osaka', 'JP', 'London', 'TW', 'TW', 'US', 'San Jose', 'Silicon Valley', 'Michigan', 'Mumbai', 'Frankfurt', 'Zurich', 'Moscow', 'RE', 'PL', 'SC', 'CW'];
+const enl = ['VAC', 'GUM', 'HKG', 'CHE', 'KOR', 'LUB', 'UAE', 'UKG', 'HKG', 'MAC', 'TWN', 'JPN', 'KOR', 'SGP', 'SGP', 'USA', 'GBR', 'FRA', 'GER', 'AUS', 'AUS', 'AFG', 'ALB', 'ALG', 'ANG', 'ARG', 'ARM', 'AUT', 'AZE', 'BRN', 'BAN', 'BLR', 'BEL', 'BIZ', 'BEN', 'BHU', 'BOL', 'BAL', 'BOT', 'BRA', 'BOT', 'BRU', 'BUL', 'BUR', 'BDI', 'CAM', 'CMR', 'CAN', 'CPV', 'CAY', 'CVL', 'CHA', 'CHI', 'CHN', 'COL', 'COM', 'CON', 'CRC', 'CRO', 'CYP', 'CZE', 'DEN', 'DJI', 'DOR', 'ECU', 'EGY', 'ESA', 'GEQ', 'ERI', 'EST', 'ETH', 'FIJ', 'FIN', 'GAB', 'GAM', 'GEO', 'GHA', 'GRE', 'GLD', 'GUA', 'GUI', 'GUY', 'HAI', 'HON', 'HUN', 'ISL', 'IND', 'INA', 'IND', 'IRI', 'IRQ', 'IRL', 'IRA', 'ISR', 'ITA', 'CIV', 'IAM', 'JOR', 'KAZ', 'KEN', 'KUW', 'KGZ', 'LAO', 'LAT', 'LIB', 'LES', 'LBR', 'LBA', 'LTU', 'LUX', 'MKD', 'MAD', 'MAW', 'MAL', 'MDV', 'MLI', 'MLT', 'MAU', 'MRI', 'MEX', 'MDA', 'MON', 'MGL', 'MEX', 'MAR', 'MOZ', 'MYA', 'NAM', 'NEP', 'NED', 'NZL', 'NCA', 'NIG', 'NGR', 'PRK', 'NOR', 'OMA', 'PAK', 'PAN', 'PAR', 'PER', 'PHI', 'POR', 'PUR', 'QAT', 'REU', 'ROU', 'RUS', 'RWA', 'MSR', 'KSA', 'SEN', 'SRB', 'SLE', 'SVK', 'SLO', 'SOM', 'RSA', 'ESP', 'SRI', 'SUD', 'SUR', 'SWZ', 'SWE', 'SUI', 'SYR', 'TJK', 'TAN', 'THA', 'TOG', 'TGA', 'TRI', 'TUN', 'TUR', 'TKM', 'ISV', 'UGA', 'UKR', 'UAE', 'UAE', 'URU', 'UZB', 'VAC', 'VEN', 'VIE', 'YEM', 'YUG', 'ZAM', 'ZIM', 'BAN', 'CZE', 'AND', 'Chunchen', 'Seoul', 'Osaka', 'Tokyo', 'London', 'Taipei', 'Taipei', 'Los Angeles', 'San Jose', 'Silicon Valley', 'Michigan', 'Mumbai', 'Frankfurt', 'Zurich', 'Moscow', 'Reunion', 'POL', 'Seychelles', 'Curacao'];
+const zh = ['梵蒂冈', '关岛', '香港', '瑞士', '南韩', '卢森堡', '迪拜', '英国', '香港', '澳门', '台湾', '日本', '韩国', '新加坡', '狮城', '美国', '英国', '法国', '德国', '澳大利亚', '澳洲', '阿富汗', '阿尔巴尼亚', '阿尔及利亚', '安哥拉', '阿根廷', '亚美尼亚', '奥地利', '阿塞拜疆', '巴林', '孟加拉国', '白俄罗斯', '比利时', '伯利兹', '贝宁', '不丹', '玻利维亚', '波斯尼亚和黑塞哥维那', '波黑共和国', '博茨瓦纳', '巴西', '英属维京群岛', '文莱', '保加利亚', '布基纳法索', '布隆迪', '柬埔寨', '喀麦隆', '加拿大', '佛得角', '开曼群岛', '中非共和国', '乍得', '智利', '中国', '哥伦比亚', '科摩罗', '刚果(布)', '刚果(金)', '哥斯达黎加', '克罗地亚', '塞浦路斯', '捷克共和国', '丹麦', '吉布提', '多米尼加共和国', '厄瓜多尔', '埃及', '萨尔瓦多', '赤道几内亚', '厄立特里亚', '爱沙尼亚', '埃塞俄比亚', '斐济', '芬兰', '加蓬', '冈比亚', '格鲁吉亚', '加纳', '希腊', '格陵兰', '危地马拉', '几内亚', '圭亚那', '海地', '洪都拉斯', '匈牙利', '冰岛', '印度', '印度尼西亚', '印尼', '伊朗', '伊拉克', '爱尔兰', '马恩岛', '以色列', '意大利', '科特迪瓦', '牙买加', '约旦', '哈萨克斯坦', '肯尼亚', '科威特', '吉尔吉斯斯坦', '老挝', '拉脱维亚', '黎巴嫩', '莱索托', '利比里亚', '利比亚', '立陶宛', '卢森堡', '马其顿', '马达加斯加', '马拉维', '马来', '马尔代夫', '马里', '马耳他', '毛利塔尼亚', '毛里求斯', '墨西哥', '摩尔多瓦', '摩纳哥', '蒙古', '黑山共和国', '摩洛哥', '莫桑比克', '缅甸', '纳米比亚', '尼泊尔', '荷兰', '新西兰', '尼加拉瓜', '尼日尔', '尼日利亚', '朝鲜', '挪威', '阿曼', '巴基斯坦', '巴拿马', '巴拉圭', '秘鲁', '菲律宾', '葡萄牙', '波多黎各', '卡塔尔', '留尼旺', '罗马尼亚', '俄罗斯', '卢旺达', '圣马力诺', '沙特阿拉伯', '塞内加尔', '塞尔维亚', '塞拉利昂', '斯洛伐克', '斯洛文尼亚', '索马里', '南非', '西班牙', '斯里兰卡', '苏丹', '苏里南', '斯威士兰', '瑞典', '瑞士', '叙利亚', '塔吉克斯坦', '坦桑尼亚', '泰国', '多哥', '汤加', '特立尼达和多巴哥', '突尼斯', '土耳其', '土库曼斯坦', '美属维尔京群岛', '乌干达', '乌克兰', '阿拉伯联合酋长国', '阿联酋', '乌拉圭', '乌兹别克斯坦', '梵蒂冈城', '委内瑞拉', '越南', '也门', '南斯拉夫', '扎伊尔', '赞比亚', '津巴布韦', '孟加拉', '捷克', '安道尔', '春川', '首尔', '大坂', '东京', '伦敦', '台北', '新北', '洛杉矶', '圣何塞', '硅谷', '密歇根', '孟买', '法兰克福', '苏黎世', '莫斯科', '法属留尼汪', '波兰', '塞舌尔', '荷属库拉索'];
+const enf = ['vatican', 'Guam', 'HongKong', 'Switzerland', 'South Korea', 'Luxembourg', 'Dubai', 'England', 'Hong Kong', 'Macao', 'Taiwan', 'Japan', 'Korea', 'Singapore', 'Singapore', 'United States', 'United Kingdom', 'France', 'Germany', 'Australia', 'Australia', 'Afghanistan', 'Albania', 'Algeria', 'Angola', 'Argentina', 'Armenia', 'Austria', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina-faso', 'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 'Congo - Brazzaville', 'Congo - Kinshasa', 'Costa Rica', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominican Republic', 'Ecuador', 'Egypt', 'EI Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Fiji', 'Finland', 'Gabon', 'Gambia', 'Georgia', 'Ghana', 'Greece', 'Greenland', 'Guatemala', 'Guinea', 'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Jordan', 'Kazakstan', 'Kenya', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Lithuania', 'Luxembourg', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar(Burma)', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 'Norway', 'Oman', 'Pakistan', 'Panama', 'Paraguay', 'Peru', 'Philippines', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russia', 'Rwanda', 'San Marino', 'Saudi Arabia', 'Senegal', 'Serbia', 'Sierra Leone', 'Slovakia', 'Slovenia', 'Somalia', 'South Africa', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Tajikstan', 'Tanzania', 'Thailand', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'U.S. Virgin Islands', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Arab Emirates', 'Uruguay', 'Uzbekistan', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Yugoslavia', 'Zaire', 'Zambia', 'Zimbabwe', 'Bangladesh', 'Czech Republic', 'Andorra', 'Chuncheon', 'Seoul', 'Osaka', 'Tokyo', 'London', 'Taipei', 'Taipei', 'Los Angeles', 'San Jose', 'Silicon Valley', 'Michigan', 'Mumbai', 'Frankfurt', 'Zurich', 'Moscow', 'Reunion', 'Poland', 'Seychelles', 'Curacao'];
 
-const en = ['HK', 'MO', 'TW', 'JP', 'KR', 'SG', 'SG', 'US', 'UK', 'FR', 'DE', 'AU', 'AU', 'AF', 'AL', 'DZ', 'AO', 'AR', 'AM', 'AT', 'AZ', 'BH', 'BD', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BA', 'BW', 'BR', 'VG', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CO', 'KM', 'CG', 'CD', 'CR', 'HR', 'CY', 'CZ', 'DK', 'DJ', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FJ', 'FI', 'GA', 'GM', 'GE', 'GH', 'GR', 'GL', 'GT', 'GN', 'GY', 'HT', 'HN', 'HU', 'IS', 'IN', 'ID', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'CI', 'JM', 'JO', 'KZ', 'KE', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MR', 'MU', 'MX', 'MD', 'MC', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NP', 'NL', 'NZ', 'NI', 'NE', 'NG', 'KP', 'NO', 'OM', 'PK', 'PA', 'PY', 'PE', 'PH', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'SM', 'SA', 'SN', 'RS', 'SL', 'SK', 'SI', 'SO', 'ZA', 'ES', 'LK', 'SD', 'SR', 'SZ', 'SE', 'CH', 'SY', 'TJ', 'TZ', 'TH', 'TG', 'TO', 'TT', 'TN', 'TR', 'TM', 'VI', 'UG', 'UA', 'AE', 'AE', 'UY', 'UZ', 'VA', 'VE', 'VN', 'YE', 'YU', 'ZR', 'ZM', 'ZW', 'BD', 'CZ', 'AD', 'Chuncheon', 'Seoul', 'Osaka', 'Tokyo', 'London', 'Taipei', 'Taipei', 'Los Angeles', 'San Jose', 'Silicon Valley', 'Michigan', 'Mumbai', 'Frankfurt', 'Zurich', 'Moscow', 'Reunion', 'PL'];
-const zh = ['香港', '澳门', '台湾', '日本', '韩国', '新加坡', '狮城', '美国', '英国', '法国', '德国', '澳大利亚', '澳洲', '阿富汗', '阿尔巴尼亚', '阿尔及利亚', '安哥拉', '阿根廷', '亚美尼亚', '奥地利', '阿塞拜疆', '巴林', '孟加拉国', '白俄罗斯', '比利时', '伯利兹', '贝宁', '不丹', '玻利维亚', '波斯尼亚和黑塞哥维那', '波黑共和国', '博茨瓦纳', '巴西', '英属维京群岛', '文莱', '保加利亚', '布基纳法索', '布隆迪', '柬埔寨', '喀麦隆', '加拿大', '佛得角', '开曼群岛', '中非共和国', '乍得', '智利', '中国', '哥伦比亚', '科摩罗', '刚果(布)', '刚果(金)', '哥斯达黎加', '克罗地亚', '塞浦路斯', '捷克共和国', '丹麦', '吉布提', '多米尼加共和国', '厄瓜多尔', '埃及', '萨尔瓦多', '赤道几内亚', '厄立特里亚', '爱沙尼亚', '埃塞俄比亚', '斐济', '芬兰', '加蓬', '冈比亚', '格鲁吉亚', '加纳', '希腊', '格陵兰', '危地马拉', '几内亚', '圭亚那', '海地', '洪都拉斯', '匈牙利', '冰岛', '印度', '印度尼西亚', '印尼', '伊朗', '伊拉克', '爱尔兰', '马恩岛', '以色列', '意大利', '科特迪瓦', '牙买加', '约旦', '哈萨克斯坦', '肯尼亚', '科威特', '吉尔吉斯斯坦', '老挝', '拉脱维亚', '黎巴嫩', '莱索托', '利比里亚', '利比亚', '立陶宛', '卢森堡', '马其顿', '马达加斯加', '马拉维', '马来', '马尔代夫', '马里', '马耳他', '毛利塔尼亚', '毛里求斯', '墨西哥', '摩尔多瓦', '摩纳哥', '蒙古', '黑山共和国', '摩洛哥', '莫桑比克', '缅甸', '纳米比亚', '尼泊尔', '荷兰', '新西兰', '尼加拉瓜', '尼日尔', '尼日利亚', '朝鲜', '挪威', '阿曼', '巴基斯坦', '巴拿马', '巴拉圭', '秘鲁', '菲律宾', '葡萄牙', '波多黎各', '卡塔尔', '留尼旺', '罗马尼亚', '俄罗斯', '卢旺达', '圣马力诺', '沙特阿拉伯', '塞内加尔', '塞尔维亚', '塞拉利昂', '斯洛伐克', '斯洛文尼亚', '索马里', '南非', '西班牙', '斯里兰卡', '苏丹', '苏里南', '斯威士兰', '瑞典', '瑞士', '叙利亚', '塔吉克斯坦', '坦桑尼亚', '泰国', '多哥', '汤加', '特立尼达和多巴哥', '突尼斯', '土耳其', '土库曼斯坦', '美属维尔京群岛', '乌干达', '乌克兰', '阿拉伯联合酋长国', '阿联酋', '乌拉圭', '乌兹别克斯坦', '梵蒂冈城', '委内瑞拉', '越南', '也门', '南斯拉夫', '扎伊尔', '赞比亚', '津巴布韦', '孟加拉', '捷克', '安道尔', '春川', '首尔', '大坂', '东京', '伦敦', '台北', '新北', '洛杉矶', '圣何塞', '硅谷', '密歇根', '孟买', '法兰克福', '苏黎世', '莫斯科', '留尼汪', '波兰'];
-const enf = ['Hong Kong', 'Macao', 'Taiwan', 'Japan', 'Korea', 'Singapore', 'Singapore', 'United States', 'United Kingdom', 'France', 'Germany', 'Australia', 'Australia', 'Afghanistan', 'Albania', 'Algeria', 'Angola', 'Argentina', 'Armenia', 'Austria', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina-faso', 'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 'Congo - Brazzaville', 'Congo - Kinshasa', 'Costa Rica', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominican Republic', 'Ecuador', 'Egypt', 'EI Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Fiji', 'Finland', 'Gabon', 'Gambia', 'Georgia', 'Ghana', 'Greece', 'Greenland', 'Guatemala', 'Guinea', 'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Jordan', 'Kazakstan', 'Kenya', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Lithuania', 'Luxembourg', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar(Burma)', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 'Norway', 'Oman', 'Pakistan', 'Panama', 'Paraguay', 'Peru', 'Philippines', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russia', 'Rwanda', 'San Marino', 'Saudi Arabia', 'Senegal', 'Serbia', 'Sierra Leone', 'Slovakia', 'Slovenia', 'Somalia', 'South Africa', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Tajikstan', 'Tanzania', 'Thailand', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'U.S. Virgin Islands', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Arab Emirates', 'Uruguay', 'Uzbekistan', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Yugoslavia', 'Zaire', 'Zambia', 'Zimbabwe', 'Bangladesh', 'Czech Republic', 'Andorra', 'Chuncheon', 'Seoul', 'Osaka', 'Tokyo', 'London', 'Taipei', 'Taipei', 'Los Angeles', 'San Jose', 'Silicon Valley', 'Michigan', 'Mumbai', 'Frankfurt', 'Zurich', 'Moscow', 'Reunion', 'Poland'];
 
 switch ($arguments['in']) {
   case 'en':
@@ -12,20 +11,14 @@ switch ($arguments['in']) {
   case 'enf':
     var inputList = enf;
     break;
+  case 'enl':
+    var inputList = enl;
+    break;
   default:
     var inputList = zh;
 };
 
-switch ($arguments['out']) {
-  case 'en':
-    var outputList = en;
-    break;
-  case 'enf':
-    var outputList = enf;
-    break;
-  default:
-    var outputList = zh;
-};
+var outputList = en
 
 var countries = {};
 for (let i in inputList) {
@@ -42,8 +35,6 @@ var others = {
   商宽: 'Biz',
   家宽: 'Fam',
   LB: 'LB',
-  IPLC: 'Spec',
-  IEPL: 'Spec',
 };
 
 var additionalOthers = $arguments.others || '{}';
@@ -55,9 +46,19 @@ var autofill = parseInt($arguments.autofill) || false;
 // 获取机场名
 const airport = ($arguments.name == undefined) ? '' : decodeURI($arguments.name);
 
+function getFlagEmoji(countryCode) {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map(char => 127397 + char.charCodeAt());
+  return String
+    .fromCodePoint(...codePoints)
+    .replace(/🇹🇼/g, '🇨🇳');
+};
+
 // 删除非必要的1
 function stripOnes(proxies) {
-  Object.keys(countries).forEach((item, index, array) => {
+  Object.keys(countries).forEach((item,index,array)=>{
     if (countries[item][1] === 1) {
       proxies.map((res) => {
         if (res.name.indexOf(countries[item][0]) !== -1) {
@@ -85,13 +86,60 @@ function simplify(cc) {
   }
   return str;
 }
+//----
 
+const RESOURCE_CACHE_KEY = '#sub-store-cached-resource';
+const CACHE_EXPIRATION_TIME_MS = 10 * 60 * 1000;
 const $ = $substore;
 
-let nodes = [];
+class ResourceCache {
+  constructor(expires) {
+    this.expires = expires;
+    const cachedData = $.read(RESOURCE_CACHE_KEY);
+    if (!cachedData) {
+      this.resourceCache = {};
+      this._persist();
+    } else {
+      this.resourceCache = JSON.parse(cachedData);
+    }
+    this._cleanup();
+  }
+  _cleanup() {
+    // clear obsolete cached resource
+    let clear = false;
+    const now = new Date().getTime();
+    Object.keys(this.resourceCache).forEach((id) => {
+      const updated = this.resourceCache[id];
+      if (!updated.time || now - updated.time > this.expires) {
+        delete this.resourceCache[id];
+        $.delete(`#${id}`);
+        clear = true;
+      }
+    });
+    if (clear) this._persist();
+  }
+  revokeAll() {
+    this.resourceCache = {};
+    this._persist();
+  }
+  _persist() {
+    $.write(JSON.stringify(this.resourceCache), RESOURCE_CACHE_KEY);
+  }
+  get(id) {
+    const updated = this.resourceCache[id] && this.resourceCache[id].time;
+    if (updated && new Date().getTime() - updated <= this.expires) {
+      return this.resourceCache[id].data;
+    }
+    return null;
+  }
+  set(id, value) {
+    this.resourceCache[id] = {time: new Date().getTime(), data: value}
+    this._persist();
+  }
+}
+const resourceCache = new ResourceCache(CACHE_EXPIRATION_TIME_MS);
 const DELIMITER = "|"; // 分隔符
-const { isLoon, isSurge, isQX } = $substore.env;
-
+const {isLoon, isSurge, isQX} = $substore.env;
 let target; // 节点转换的目标类型
 if (isLoon) {
   target = "Loon";
@@ -100,10 +148,8 @@ if (isLoon) {
 } else if (isQX) {
   target = "QX";
 }
-
 async function operator(proxies) {
-  console.log("✅💕初始节点个数 =" + proxies.length);
-
+  //console.log("✅💕初始节点个数 = " + proxies.length);
   let support = false;
   if (isLoon || isQX) {
     support = true;
@@ -113,81 +159,65 @@ async function operator(proxies) {
       support = true;
     }
   }
-
   if (!support) {
     $.error(`🚫IP Flag only supports Loon and Surge!`);
     return proxies;
   }
-
-  const BATCH_SIZE = 10; // 每一次处理的节点个数
+  const BATCH_SIZE = 10; //每次处理的节点数
   let i = 0;
   while (i < proxies.length) {
     const batch = proxies.slice(i, i + BATCH_SIZE);
     await Promise.allSettled(batch.map(async proxy => {
       try {
-        // 查询节点信息，返回为：地区名称 | IP|QC
-        proxy.name = await queryIpApi(proxy);
+        const code_name = await queryIpApi(proxy);
+        // 节点重命名为：地区代码|地区名称|IP|序号
+        proxy.name = code_name;
       } catch (err) {
         console.log(`✅💕err=${err}`);
       }
     }));
 
-    await sleep(1000);
+    await sleep(100);
     i += BATCH_SIZE;
   }
-  // 去除重复的节点，判断是否重复就是节点名中的 IP
+  // 去除重复的节点
   proxies = removeDuplicateName(proxies);
   // 再加个序号
   for (let j = 0; j < proxies.length; j++) {
     const index = (j + 1).toString().padStart(2, '0');
     proxies[j].name = proxies[j].name + DELIMITER + index;
   }
-
-  proxies = filterByQC(proxies);
-
-  proxies.forEach((res) => {
-    const resultArray = [airport];
-    var matched = false;
-    for (const elem of Object.keys(countries)) {
-      if (simplify(res.name).indexOf(elem) !== -1) {
-        countries[elem][1] += 1;
-        if (!autofill) {
-          resultArray.push(
-            countries[elem][0],
-            countries[elem][1].toString().padStart(2, "0")
-          );
-        } else {
-          resultArray.push(
-            countries[elem][0],
-            countries[elem][1].toString().padStart(autofill, "0")
-          );
-        }
-        matched = true;
-        break;
+// --- 批量重命名
+proxies.forEach((res) => {
+  const resultArray = [];
+  var matched = false;
+  for (const elem of Object.keys(countries)) {
+    if (simplify(res.name).indexOf(elem) !== -1) {
+      countries[elem][1] += 1;
+      if (!autofill) {
+        resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(1, '0'));
+      } else {
+        resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
       }
+      matched = true;
+      break;
     }
-    if (!matched) {
-      resultArray.push(res.name);
-    }
-    Object.keys(others).forEach((elem, index) => {
-      if (simplify(res.name).indexOf(elem) !== -1) {
-        resultArray.splice(2, 0, others[elem]);
-      }
-    });
-    res.name = resultArray.join(" ");
-  });
-
-  if ($arguments.clear) {
-    proxies = stripOnes(proxies);
-    proxies = proxies.filter(item => !nameclear.test(item.name));
   }
-
-  return proxies;
+  if (!matched) {
+    resultArray.push(airport, res.name);
+  }
+  Object.keys(others).forEach((elem, index) => {
+    if (simplify(res.name).indexOf(elem) !== -1) {
+      resultArray.splice(2, 0, others[elem]);
+    }
+  });
+  res.name = resultArray.join(" ");
+});
+if ($arguments.clear) {
+  proxies = stripOnes(proxies);
 }
-
-function filterByQC(proxies) {
-  // 过滤出名字含有QC等节点
-  return proxies.map(p => p.name.indexOf("QC") !== -1);
+//--
+  return proxies;
 }
 
 // 根据节点名字去除重复的节点
@@ -197,19 +227,33 @@ function removeDuplicateName(arr) {
   for (const e of arr) {
     if (!nameSet.has(e.name) && e.name.endsWith("|QC")) {
       nameSet.add(e.name);
-      e.name = e.name.substring(0, e.name.indexOf(DELIMITER));
+      e.name = e.name.substring(0, e.name.lastIndexOf(DELIMITER));
       result.push(e);
     }
   }
   return result;
 }
 
+const tasks = new Map();
+
 async function queryIpApi(proxy) {
+  // 如果节点的server和port一样就认为是重复的，这里就不会去重新请求而是直接返回
+  const id = getId(proxy);
+  if (tasks.has(id)) {
+    return tasks.get(id);
+  }
+
+  const ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:78.0) Gecko/20100101 Firefox/78.0";
   const headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:78.0) Gecko/20100101 Firefox/78.0",
+    "User-Agent": ua
   };
 
-  return new Promise((resolve, reject) => {
+  const result = new Promise((resolve, reject) => {
+    const cached = resourceCache.get(id);
+    if (cached) {
+      resolve(cached);
+    }
+    const url = `http://ip-api.com/json?lang=zh-CN`;
     let node = ProxyUtils.produce([proxy], target);
 
     // Loon 需要去掉节点名字
@@ -217,24 +261,34 @@ async function queryIpApi(proxy) {
       const s = node.indexOf("=");
       node = node.substring(s + 1);
     }
-    // QX 只要 tag 的名字，目前 QX 本身不支持
+    // nodes.push(node);
+
+    // QX只要tag的名字，目前QX不支持
     const QXTag = node.substring(node.lastIndexOf("=") + 1);
     const opts = {
       policy: QXTag
     };
 
-    const url = `http://ip-api.com/json?lang=zh-CN`;
-    $.http.get({
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => {
+        reject(new Error("请求超时"));
+      }, 300); // 超时 延迟 时间ms
+    });
+
+    const queryPromise = $.http.get({
       url,
       headers,
-      opts: opts, // QX 的写法
+      opts: opts, // QX的写法
       node: node,
       "policy-descriptor": node
     }).then(resp => {
-      const data = JSON.parse(resp.body);
+      const body = resp.body;
+      const data = JSON.parse(body);
       if (data.status === "success") {
-        // 地区名称 | IP|QC ：新加坡 | 13.215.162.99|QC
-        resolve(data.country + DELIMITER + data.query + "|QC");
+        // 地区代码|地区名称|IP ：SG|新加坡|13.215.162.99
+        const nodeInfo = data.countryCode + DELIMITER + data.country + DELIMITER + data.query+ "|QC";
+        resourceCache.set(id, nodeInfo);
+        resolve(nodeInfo);
       } else {
         reject(new Error(data.message));
       }
@@ -242,8 +296,23 @@ async function queryIpApi(proxy) {
       console.log("💕err =" + err);
       reject(err);
     });
+
+    Promise.race([timeoutPromise, queryPromise])
+      .catch(err => {
+        reject(err);
+      });
   });
+
+  tasks.set(id, result);
+  return result;
 }
 
+function getId(proxy) {
+  return MD5(`IP-FLAG-${proxy.server}-${proxy.port}`);
+}
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
+var MD5 = function (d) { var r = M(V(Y(X(d), 8 * d.length))); return r.toLowerCase() }; function M(d) { for (var _, m = "0123456789ABCDEF", f = "", r = 0; r < d.length; r++)_ = d.charCodeAt(r), f += m.charAt(_ >>> 4 & 15) + m.charAt(15 & _); return f } function X(d) { for (var _ = Array(d.length >> 2), m = 0; m < _.length; m++)_[m] = 0; for (m = 0; m < 8 * d.length; m += 8)_[m >> 5] |= (255 & d.charCodeAt(m / 8)) << m % 32; return _ } function V(d) { for (var _ = "", m = 0; m < 32 * d.length; m += 8)_ += String.fromCharCode(d[m >> 5] >>> m % 32 & 255); return _ } function Y(d, _) { d[_ >> 5] |= 128 << _ % 32, d[14 + (_ + 64 >>> 9 << 4)] = _; for (var m = 1732584193, f = -271733879, r = -1732584194, i = 271733878, n = 0; n < d.length; n += 16) { var h = m, t = f, g = r, e = i; f = md5_ii(f = md5_ii(f = md5_ii(f = md5_ii(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_ff(f = md5_ff(f = md5_ff(f = md5_ff(f, r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 0], 7, -680876936), f, r, d[n + 1], 12, -389564586), m, f, d[n + 2], 17, 606105819), i, m, d[n + 3], 22, -1044525330), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 4], 7, -176418897), f, r, d[n + 5], 12, 1200080426), m, f, d[n + 6], 17, -1473231341), i, m, d[n + 7], 22, -45705983), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 8], 7, 1770035416), f, r, d[n + 9], 12, -1958414417), m, f, d[n + 10], 17, -42063), i, m, d[n + 11], 22, -1990404162), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 12], 7, 1804603682), f, r, d[n + 13], 12, -40341101), m, f, d[n + 14], 17, -1502002290), i, m, d[n + 15], 22, 1236535329), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 1], 5, -165796510), f, r, d[n + 6], 9, -1069501632), m, f, d[n + 11], 14, 643717713), i, m, d[n + 0], 20, -373897302), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 5], 5, -701558691), f, r, d[n + 10], 9, 38016083), m, f, d[n + 15], 14, -660478335), i, m, d[n + 4], 20, -405537848), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 9], 5, 568446438), f, r, d[n + 14], 9, -1019803690), m, f, d[n + 3], 14, -187363961), i, m, d[n + 8], 20, 1163531501), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 13], 5, -1444681467), f, r, d[n + 2], 9, -51403784), m, f, d[n + 7], 14, 1735328473), i, m, d[n + 12], 20, -1926607734), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 5], 4, -378558), f, r, d[n + 8], 11, -2022574463), m, f, d[n + 11], 16, 1839030562), i, m, d[n + 14], 23, -35309556), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 1], 4, -1530992060), f, r, d[n + 4], 11, 1272893353), m, f, d[n + 7], 16, -155497632), i, m, d[n + 10], 23, -1094730640), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 13], 4, 681279174), f, r, d[n + 0], 11, -358537222), m, f, d[n + 3], 16, -722521979), i, m, d[n + 6], 23, 76029189), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 9], 4, -640364487), f, r, d[n + 12], 11, -421815835), m, f, d[n + 15], 16, 530742520), i, m, d[n + 2], 23, -995338651), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 0], 6, -198630844), f, r, d[n + 7], 10, 1126891415), m, f, d[n + 14], 15, -1416354905), i, m, d[n + 5], 21, -57434055), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 12], 6, 1700485571), f, r, d[n + 3], 10, -1894986606), m, f, d[n + 10], 15, -1051523), i, m, d[n + 1], 21, -2054922799), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 8], 6, 1873313359), f, r, d[n + 15], 10, -30611744), m, f, d[n + 6], 15, -1560198380), i, m, d[n + 13], 21, 1309151649), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 4], 6, -145523070), f, r, d[n + 11], 10, -1120210379), m, f, d[n + 2], 15, 718787259), i, m, d[n + 9], 21, -343485551), m = safe_add(m, h), f = safe_add(f, t), r = safe_add(r, g), i = safe_add(i, e) } return Array(m, f, r, i) } function md5_cmn(d, _, m, f, r, i) { return safe_add(bit_rol(safe_add(safe_add(_, d), safe_add(f, i)), r), m) } function md5_ff(d, _, m, f, r, i, n) { return md5_cmn(_ & m | ~_ & f, d, _, r, i, n) } function md5_gg(d, _, m, f, r, i, n) { return md5_cmn(_ & f | m & ~f, d, _, r, i, n) } function md5_hh(d, _, m, f, r, i, n) { return md5_cmn(_ ^ m ^ f, d, _, r, i, n) } function md5_ii(d, _, m, f, r, i, n) { return md5_cmn(m ^ (_ | ~f), d, _, r, i, n) } function safe_add(d, _) { var m = (65535 & d) + (65535 & _); return (d >> 16) + (_ >> 16) + (m >> 16) << 16 | 65535 & m } function bit_rol(d, _) { return d << _ | d >>> 32 - _ }
