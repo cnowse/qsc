@@ -35,7 +35,7 @@ switch ($arguments['in']) {
     var inputList = zh;
 };
 
-var outputList = en
+var outputList = en;
 
 var countries = {};
 for (let i in inputList) {
@@ -89,12 +89,12 @@ function stripOnes(proxies) {
     if (countries[item][1] === 1) {
       proxies.map((res) => {
         if (res.name.indexOf(countries[item][0]) !== -1) {
-          res.name = res.name.replace(/1|0/g, '')//.replace('0', '');
+          res.name = res.name.replace(/1|0/g, '');//.replace('0', '');
         };
       });
     };
   });
-  return proxies
+  return proxies;
 };
 
 function getFlagEmoji(countryCode) {
@@ -130,25 +130,25 @@ function operator(proxies) {
   proxies = proxies.filter(item => !nameclear.test(item.name));
   proxies.map((res) => {
     const resultArray = [];
-    var matched = false
-    var regex = /UK/i
+    var matched = false;
+    var regex = /UK/i;
     if (regex.test(res.name)) {
       if(res.name.indexOf('uk') != -1) {
-        res.name = res.name.replace('uk', 'GB')
+        res.name = res.name.replace('uk', 'GB');
       } else {
-        res.name = res.name.replace('UK', 'GB')
+        res.name = res.name.replace('UK', 'GB');
       }
     }
     for (const elem of Object.keys(countries)) {
       if (simplify(res.name).indexOf(elem) !== -1) {
         countries[elem][1] += 1;
-        var flag = getFlagEmoji(countries[elem][0])
+        var flag = getFlagEmoji(countries[elem][0]);
         if (!autofill) {
           resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(1, '0'));
         } else {
           resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
         }
-        matched = true
+        matched = true;
         break;
       };
     };
