@@ -143,7 +143,7 @@ function operator(proxies) {
     };
     Object.keys(others).forEach((elem, index) => {
       if (simplify(res.name).indexOf(elem) !== -1) {
-        resultArray.splice(3, 0, others[elem]);
+        resultArray.splice(4, 0, others[elem]);
 
       }
     });
