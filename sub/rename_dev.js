@@ -13,7 +13,6 @@
  * a=2：2 -> 序号改为 01 ；3 -> 序号改为 001 （单个节点去除需要功能会失效），不加默认 1
  * o={}：json -> 指定修改格式，例如倍率 5x，可以保留下来
  * c：机场中某个节点只有一个，过滤掉其序号
- * s: 简繁转换
  */
 
 
@@ -127,7 +126,6 @@ function operator(proxies) {
       }
     }
     for (const elem of Object.keys(countries)) {
-      if($arguments.s) {
         if (simplify(res.name).indexOf(elem) !== -1) {
           countries[elem][1] += 1;
           var flag = getFlagEmoji(countries[elem][0]);
@@ -139,18 +137,6 @@ function operator(proxies) {
           matched = true;
           break;
         };
-      } else {
-        countries[elem][1] += 1;
-          var flag = getFlagEmoji(countries[elem][0]);
-          if (!autofill) {
-            resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(1, '0'));
-          } else {
-            resultArray.push(flag, airport, countries[elem][0], countries[elem][1].toString().padStart(autofill, '0'));
-          }
-          matched = true;
-          break;
-      }
-      
     };
     if (!matched) {
       resultArray.push(airport, res.name);
