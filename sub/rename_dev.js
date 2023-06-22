@@ -546,7 +546,7 @@ others = Object.assign({}, additionalOthers, others);
 
 var autofill = parseInt($arguments.a) || false;
 
-const airport = ($arguments.n == undefined) ? '' : decodeURI($arguments.n);
+const airport = ($arguments.n == undefined) ? '' : '「' + decodeURI($arguments.n) + '」';
 
 function stripOnes(proxies) {
   Object.keys(countries).forEach((item, index, array) => {
