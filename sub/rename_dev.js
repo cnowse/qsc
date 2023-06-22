@@ -140,7 +140,8 @@ const zh = [
   '爱尔兰',
   '马恩岛',
   '伊拉克',
-  '波多黎各'
+  '波多黎各',
+  '台北'
   ];
   const enf = [
     'Singapore', 
@@ -259,7 +260,8 @@ const zh = [
     'Ireland',
     'Isle of Man',
     'Iraq',
-    'puerto rico'
+    'puerto rico',
+    'Taiwan'
     ];
     const en = [
       'SG', 
@@ -378,7 +380,8 @@ const zh = [
       'IE',
       'IM',
       'IQ',
-      'PR'
+      'PR',
+      'TW'
       ];
       const enl = [
         'SGP', 
@@ -497,7 +500,8 @@ const zh = [
         'IRL',
         'IMN',
         'IRQ',
-        'PRI'
+        'PRI',
+        'TWN'
         ];
 
 switch ($arguments['i']) {
