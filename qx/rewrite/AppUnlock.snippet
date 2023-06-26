@@ -7,4 +7,23 @@
 # wps会员解锁 vas.wps.cn, account.wps.cn
 ^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) url script-response-body https://raw.githubusercontent.com/510004015/Quantumult_X/Remote/Premium/WPSOffice.js
 
-hostname=*.caiyunapp.*, *cyapi*, mb3admin.com, vas.wps.cn, account.wps.cn
+# 有道词典会员解锁 dict.youdao.com
+^https:\/\/dict\.youdao\.com\/vip\/user\/status url script-response-body https://raw.githubusercontent.com/jizhi0520/QX/main/wyydcd.js
+
+# 懒人听书会员解锁 *.mting.*,m.lrts.me,hapi.mting.info
+^http[s]?:\/\/((shapi|hapi)(\.mting\.info)|(m\.lrts\.me)|(gzapi\.mting\.info))\/(app|yyting)\/(getVipPageData|userclient\/ClientGetUserInfo|usercenter\/ThirdPartyLogin).*$ url script-response-body https://raw.githubusercontent.com/WeiRen0/Scripts/main/LanRen.js
+
+# 微信读书会员解锁 *.weread.qq.com
+^http[s]?:\/\/(i|res)\.weread\.qq.com\/(login|pay\/balance|book\/chapterInfos|user\?userVid\=|upload\?type\=avatar).*$ url script-response-body https://raw.githubusercontent.com/WeiRen0/Scripts/main/wxds.js
+^http[s]:\/\/i\.weread\.qq\.com\/login url request-body [\s\S]+ request-body {}
+^http[s]?:\/\/i\.weread\.qq\.com\/device\/logout url reject-200
+^http[s]?:\/\/i\.weread\.qq\.com\/updateConfig url reject-200
+^http[s]?:\/\/res\.weread\.qq.com\/upload\?type\=avatar url reject-200
+
+# Nicegram会员解锁 restore-access.indream.app
+^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$ url script-echo-response https://raw.githubusercontent.com/I-am-R-E/Functional-Store-Hub/Master/Nicegram/Script/Nicegram.js
+
+# TouchRetouch会员解锁 api.revenuecat.com
+^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})$ url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/TouchRetouch.js
+
+hostname=*.caiyunapp.*, *cyapi*, mb3admin.com, vas.wps.cn, account.wps.cn, dict.youdao.com, *.mting.*, m.lrts.me, hapi.mting.info, *.weread.qq.com, restore-access.indream.app, api.revenuecat.com
