@@ -504,21 +504,21 @@ const zh = [
         'TWN'
         ];
 
-function getList(arg) {
-  switch (arg) {
-    case "en":
-      return en;
-    case "enl":
-      return enl;
-    case "enf":
-      return enf;
-    default:
-      return zh;
-  }
-}
+switch ($arguments['i']) {
+  case 'en':
+    var inputList = en;
+    break;
+  case 'enf':
+    var inputList = enf;
+    break;
+  case 'enl':
+    var inputList = enl;
+    break;
+  default:
+    var inputList = zh;
+};
 
-var inputList = getList($arguments['i'])
-var outputList = getList($arguments["ot"]);
+var outputList = en;
 
 var countries = {};
 for (let i in inputList) {
