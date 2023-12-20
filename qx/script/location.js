@@ -48,7 +48,7 @@ function get_ip_api() {
   }, () => {
     message = "</br></br>❗️查询超时";
     message = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;">` + message + `</p>`;
-    $done({"title": "    🎉节点详情查询", "htmlMessage": message});
+    $done({"title": "     🎉 节点详情查询", "htmlMessage": message});
   })
 }
 
@@ -64,7 +64,7 @@ function fetchIPInfo(data) {
   $task.fetch(myRequest).then(response => {
     console.log(response.statusCode + "--cz88--\n" + response.body);
     if (response.body) json2info(response.body, data);
-    $done({"title": "    🎉节点详情查询", "htmlMessage": message});
+    $done({"title": "     🎉 节点详情查询", "htmlMessage": message});
   }, reason => {
     console.log(reason.error);
     $done();
@@ -78,14 +78,14 @@ function json2info(data1, data) {
   data = JSON.parse(data);
   console.log("结束解析数据，开始组装内容、、、\n");
   br = "</br>"
-  message = "--------------------------------------"+ br
+  message = "--------------------------------------"
   // 组装每一行内容
-  message += "<b>IP：</b>" + data1.ip + br
-  message += "<b>运营商(isp)：</b>" + data1.isp + br
-  message += "<b>网络类型：</b>" + data1.netWorkType + br
-  message += "<b>真人概率：</b>" + data1.score + br
-  message += "<b>位置 : </b>" + getLocation(data1) + br
-  message += "<b>时区 : </b>" + data.timezone + br
+  message += br + "<b>IP：</b>" + data1.ip + br
+  message += br + "<b>位置 : </b>" + getLocation(data1) + br
+  message += br + "<b>真人概率：</b>" + data1.score + br
+  message += br + "<b>运营商(isp)：</b>" + data1.isp + br
+  message += br + "<b>网络类型：</b>" + data1.netWorkType + br
+  message += br + "<b>时区 : </b>" + data.timezone + br
   message += "--------------------------------------" + br
   message += "<font color=#6959CD><b>节点</b> ➟ " + $environment.params + "</font>";
   message = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + message + `</p>`;
