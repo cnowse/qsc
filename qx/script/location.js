@@ -27,43 +27,61 @@
  * }
  **/
 
-let message = "";
-get_ip_api();
+/**
+ * @author Jeong Geol
+ * @github https://github.com/cnowse
+ * @date 2023-12-21
+ * @description event-interaction https://raw.githubusercontent.com/cnowse/qsc/master/qx/script/location.js, tag=节点详情查询, img-url=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Back.png, enabled=true
+ */
+let message = ""
+getIpApi()
 
-// 1、先获取当前节点的IP，如果能从$environment中取到，可以省略这一步
-function get_ip_api() {
-  const url = `http://ip-api.com/json?lang=zh-CN`;
+// 先获取当前节点的IP，如果能从$environment中取到，可以省略这一步
+function getIpApi() {
+  const url = `http://ip-api.com/json?lang=zh-CN`
   const opts = {
     policy: $environment.params
   };
   const myRequest = {
     url: url,
     opts: opts,
-    timeout: 8000
+    timeout: 5000
   };
 
   $task.fetch(myRequest).then(response => {
     console.log(response.statusCode + "--ip-api--\n" + response.body);
-    if (response.body) fetchIPInfo(response.body);
+    if (response.body && response.status === 'SUCCESS') {
+      fetchIPInfo(response.body)
+    } else {
+      message = "</br></br>❗️查询超时";
+      message = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;">` + message + `</p>`;
+      $done({"title": "      🎉 节点详情查询", "htmlMessage": message});
+    }
   }, () => {
     message = "</br></br>❗️查询超时";
     message = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;">` + message + `</p>`;
-    $done({"title": "     🎉 节点详情查询", "htmlMessage": message});
+    $done({"title": "      🎉 节点详情查询", "htmlMessage": message});
   })
 }
 
 // 2、获取到IP后再去查询IP的详细信息
 function fetchIPInfo(data) {
-  const url = `https://www.cz88.net/api/cz88/ip/base?ip=${JSON.parse(data).query}`;
+  const url = `https://www.cz88.net/api/cz88/ip/base?ip=${JSON.parse(data).query}`
   console.log("url=" + url);
   const myRequest = {
     url: url,
-    timeout: 8000
+    timeout: 5000
   };
 
   $task.fetch(myRequest).then(response => {
     console.log(response.statusCode + "--cz88--\n" + response.body);
-    if (response.body) json2info(response.body, data);
+    if (response.body && response.body.success === true) {
+      json2info(response.body, data);
+    } else {
+      message = "</br></br>❗️查询超时";
+      message = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: bold;">` + message + `</p>`;
+      $done({"title": "      🎉 节点详情查询", "htmlMessage": message});
+    }
     $done({"title": "     🎉 节点详情查询", "htmlMessage": message});
   }, reason => {
     console.log(reason.error);
