@@ -1,7 +1,8 @@
 # 团油 [acs.nlktj.com]
 ^https:\/\/acs\.nlktj\.com\/services\/v3\/facadeAdvertisingInfo\/getAdvertisingInfoByCode url reject-dict
 
-# 钉钉 [gw.alicdn.com]
-^https:\/\/gw\.alicdn\.com\/imgextra\/i[^\s]+\/[^\s]+\.jpg$ url reject-dict
+# 钉钉 [gw.alicdn.com，img.alicdn.com]
+# ^https:\/\/gw\.alicdn\.com\/imgextra\/i[^\s]+\/[^\s]+\.jpg$ url reject-dict
+^https:\/\/(gw|img)\.alicdn\.com\/imgextra\/.+\/[\w!]+\d+-\d+-.+-\b([8-9]\d{2,}|[1-9]\d{3,})\b-\b([5-9]\d{2,}|[1-9]\d{3,})\b url reject-dict
 
-hostname = acs.nlktj.com, gw.alicdn.com
+hostname = acs.nlktj.com, gw.alicdn.com, img.alicdn.com
