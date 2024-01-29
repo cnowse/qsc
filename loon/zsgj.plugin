@@ -4,7 +4,7 @@
 #!author=Jeong Geol
 #!icon=https://raw.githubusercontent.com/cnowse/qsc/master/loon/icon/zsgj.png
 
-[Script]
+[Rewrite]
 # 我的横幅广告
 ^https?:\/\/quanguo\.mygolbs\.com:8081\/MyBusServer\/servlet\/MyGoServer\.HttpPool\.HttpHandlerServlet reject-200
 
