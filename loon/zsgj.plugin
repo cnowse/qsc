@@ -1,0 +1,13 @@
+#!name=掌上公交
+#!desc=掌上公交去广告
+#!homepage=https://www.github.com/cnowse
+#!author=Jeong Geol
+#!icon=https://raw.githubusercontent.com/cnowse/qsc/master/loon/icon/zsgj.png
+
+[Script]
+# 我的横幅广告
+^https?:\/\/quanguo\.mygolbs\.com:8081\/MyBusServer\/servlet\/MyGoServer\.HttpPool\.HttpHandlerServlet reject-200
+
+[MITM]
+
+hostname = quanguo.mygolbs.com, wx.mygolbs.com
