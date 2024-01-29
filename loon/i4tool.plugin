@@ -1,0 +1,13 @@
+#!name=爱思助手
+#!desc=爱思助手去广告
+#!homepage=https://www.github.com/cnowse
+#!author=Jeong Geol
+#!icon=https://raw.githubusercontent.com/cnowse/qsc/master/loon/icon/i4tool.png
+
+[Rewrite]
+
+^https?:\/\/list-app-m\.i4\.cn\/getopfstadinfo\.xhtml reject
+
+[MITM]
+
+hostname = list-app-m.i4.cn
