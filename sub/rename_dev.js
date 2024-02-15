@@ -271,7 +271,7 @@ const en = [
   'IQ',
   'PR',
   'TW',
-  'UK',
+  'GB',
   'LV',
   'BG',
   'CZ',
