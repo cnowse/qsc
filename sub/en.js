@@ -116,5 +116,12 @@ const en = [
   'IM',
   'IQ',
   'PR',
-  'TW'
+  'TW',
+  'UK',
+  'LV',
+  'BG',
+  'CZ',
+  'TC',
+  'MD',
+  'NG'
   ];

@@ -116,5 +116,12 @@ const enl = [
   'IMN',
   'IRQ',
   'PRI',
-  'TWN'
+  'TWN',
+  'UKR',
+  'LVA',
+  'BGR',
+  'CZE',
+  'TCH',
+  'MDA',
+  'NGA'
   ];

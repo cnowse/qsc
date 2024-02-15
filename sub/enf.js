@@ -116,5 +116,12 @@ const enf = [
   'Isle of Man',
   'Iraq',
   'puerto rico',
-  'Taiwan'
+  'Taiwan',
+  'United Kingdom',
+  'Latvia',
+  'Bulgaria',
+  'Czech Republic',
+  'Czechoslovakia',
+  'Moldova',
+  'Nigeria'
   ];
