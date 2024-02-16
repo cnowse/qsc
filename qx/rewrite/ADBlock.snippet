@@ -2,16 +2,23 @@
 # Date: 2024-01-29
 # Github: https://www.github.com/cnowse
 # Url: https://raw.githubusercontent.com/cnowse/qsc/master/qx/rewrite/ADBlock.snippet
-# Description: 该规则合集不包含 [IT之家、百度贴吧、随手记、Keep、Bilibili、12306、微博、菜鸟、高德、知乎、小红书、网易云音乐、什么值得买]，需要这些的可以使用 @RuCu6 的配置
+# Description: 该规则合集不包含 [IT之家、随手记、Keep、Bilibili、微博、菜鸟、高德、知乎、小红书、网易云音乐、什么值得买]，需要这些的可以使用 @RuCu6 的配置
 
-###### A ######
+#------ A ------#
 # > 爱思助手
 # hostname = list-app-m.i4.cn
 ^https?:\/\/list-app-m\.i4\.cn\/getopfstadinfo\.xhtml url reject
-###### A ######
+
+# > 阿里云盘
+# hostname = api.alipan.com, member.alipan.com
+^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders url reject-dict
+^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets) url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/adrive.js
+^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/adrive.js
+^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle url reject-dict
+#------ A ------#
 
 
-###### B ######
+#------ B ------#
 # > 百度网盘
 # hostname = pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn
 ^https?:\/\/pan\.baidu\.com\/rest\/\d\.\d\/pcs\/adx url reject
@@ -31,14 +38,17 @@
 ^https?:\/\/update.pan.baidu.com\/statistics url reject
 ^https?:\/\/fc-video\.cdn\.bcebos\.com url reject
 ^https?:\/\/rp\.hpplay\.cn\/logouts url reject
-###### B ######
+#------ B ------#
 
 
-###### C ######
-###### C ######
+#------ C ------#
+# > CSDN
+# hostname = app-gw.csdn.net
+^https:\/\/app-gw\.csdn\.net\/cms-app\/v\d\/home_page\/open_advertisement url reject
+#------ C ------#
 
 
-###### D ######
+#------ D ------#
 # > 钉钉
 # hostname = gw.alicdn.com, img.alicdn.com, down-cdn.dingtalk.com
 # ^https:\/\/gw\.alicdn\.com\/imgextra\/i[^\s]+\/[^\s]+\.jpg$ url reject-dict
@@ -83,14 +93,21 @@
 # 横幅广告
 ^https:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name= url reject-dict
 ^https:\/\/daijia\.kuaidadi\.com\/gateway\?api=prado\.cms\.delivery\.batch&apiVe url reject-dict
-###### D ######
+#------ D ------#
 
 
-###### E ######
-###### E ######
+#------ E ------#
+# > 饿了么
+# hostname = elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com
+^https:\/\/elemecdn.com\/.+\/sitemap url reject
+^https:\/\/fuss10.elemecdn.com\/.+\/w\/640\/h\/\d{3,4} url reject
+^https:\/\/fuss10.elemecdn.com\/.+\/w\/750\/h\/\d{3,4} url reject
+^https:\/\/fuss10.elemecdn.com\/.+\.mp4 url reject
+^https:\/\/www1.elecfans.com\/www\/delivery url reject
+#------ E ------#
 
 
-###### F ######
+#------ F ------#
 # > 飞猪 + 阿里巴巴
 # hostname = amdc.m.taobao.com, acs.m.taobao.com, gw.alicdn.com
 ^http?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch %E9%A3%9E%E7%8C%AA%E6%97%85%E8%A1%8C url-and-header reject-dict
@@ -98,25 +115,25 @@
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources\/1\.0\?type=originaljson url reject-img
 ^https?:\/\/gw\.alicdn\.com\/mt\/ url reject
 ^https?:\/\/gw\.alicdn\.com\/imgextra\/\w{2}\/[\w!]+-\d-tps-\d{3}-\d{4}\.(jpg|png)$ url reject
-###### F ######
+#------ F ------#
 
 
-###### G ######
+#------ G ------#
 # > 工银E生活
 # hostname = pv.elife.icbc.com.cn
 ^https?:\/\/pv\.elife\.icbc\.com\.cn\/OFSTPV\/utm\.gif url reject-200
-###### G ######
+#------ G ------#
 
 
-###### H ######
-###### H ######
+#------ H ------#
+#------ H ------#
 
 
-###### I ######
-###### I ######
+#------ I ------#
+#------ I ------#
 
 
-###### J ######
+#------ J ------#
 # > 建行生活
 # hostname = yunbusiness.ccb.com
 # 首页横幅广告
@@ -151,10 +168,14 @@
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture url reject
 ^https?:\/\/appconf\.mail\.163\.com\/mmad\/ url reject
 ^https?:\/\/support\.you\.163\.com\/xhr\/boot\/getBootMedia\.json url reject
-###### J ######
+
+# > 交管12123
+# hostname = gab.122.gov.cn
+^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ url reject
+#------ J ------#
 
 
-###### K ######
+#------ K ------#
 # > 快手联盟,优量汇,穿山甲
 # hostname = api-access.pangolin-sdk-toutiao.com, is.snssdk.com, mi.gdt.qq.com
 ^https:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads url script-response-body https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js
@@ -170,14 +191,14 @@
 ^https?:\/\/res\.kfc\.com\.cn\/CRM\/kfcad\/apphome5\/apphome url reject-200
 ^https?:\/\/res\.kfc\.com\.cn\/CRM\/kfcad\/apphome6\/\w+\.json\? url reject-dict
 ^https?:\/\/res\.kfc\.com.\cn\/advertisement\/ url reject
-###### K ######
+#------ K ------#
 
 
-###### L ######
-###### L ######
+#------ L ------#
+#------ L ------#
 
 
-###### M ######
+#------ M ------#
 # > 米家
 # hostname = home.mi.com
 ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(banner|myTab)\? url reject-dict
@@ -213,10 +234,10 @@
 # > 美团充电宝小程序
 # hostname = cdb.meituan.com
 ^https:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList url reject-dict
-###### M ######
+#------ M ------#
 
 
-###### N ######
+#------ N ------#
 # > 农业银行
 # hostname = midc.cdn-static.abchina.com.cn, enjoy.cdn-static.abchina.com
 # 开屏广告
@@ -224,46 +245,46 @@
 ^https:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(bdfb4|86fb9) url reject-dict
 ^https?:\/\/enjoy\.cdn-static\.abchina\.com\/yx-engine-web\/file\/download\/(9ce31|1bf6e) url reject-200
 ^https?:\/\/enjoy\.cdn-static\.abchina\.com\/yx-engine-web\/file\/download\/6bd18.*? url reject-200
-###### N ######
+#------ N ------#
 
 
-###### O ######
-###### O ######
+#------ O ------#
+#------ O ------#
 
 
-###### P ######
+#------ P ------#
 # > 拼多多
 # hostname = api.pinduoduo.com, api.yangkeduo.com, mobile.yangkeduo.com
 ^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash url reject
 # 多多买菜
 # 开屏广告
 ^https:\/\/mobile\.yangkeduo\.com\/proxy\/api\/api\/express\/post\/waybill\/red_packet\/goods_list$ url response-body "list":\[.+\] response-body "list":[]
-###### P ######
+#------ P ------#
 
 
-###### Q ######
-###### Q ######
+#------ Q ------#
+#------ Q ------#
 
 
-###### R ######
+#------ R ------#
 # Reddit
 # hostname = gql.reddit.com
 # 过滤推广, 关 subreddit 的 NSFW 提示
 ^https?:\/\/gql\.reddit\.com url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/reddit.js
-###### R ######
+#------ R ------#
 
 
-###### S ######
+#------ S ------#
 # > 识货
 # hostname = sh-gateway.shihuo.cn, static.shihuocdn.cn
 # 开屏广告
 ^https?:\/\/sh-gateway\.shihuo\.cn\/v\d\/services\/sh-adapi\/home\/(screen|ad) url reject
 ^https?:\/\/static\.shihuocdn\.cn\/admin\/imgs/202[0-9]{5}\/[a-z0-9]{32}_513x777\.png url reject-200
 ^https?:\/\/static\.shihuocdn\.cn\/admin\/imgs/202[0-9]{5}\/[a-z0-9]{32}_750x1624\.png url reject-200
-###### S ######
+#------ S ------#
 
 
-###### T ######
+#------ T ------#
 # > 团油
 # hostname = acs.nlktj.com
 ^https:\/\/acs\.nlktj\.com\/services\/v3\/facadeAdvertisingInfo\/getAdvertisingInfoByCode url reject-dict
@@ -304,18 +325,25 @@
 ^https?:\/\/mmgr\.gtimg\.com\/gjsmall\/qiantu\/upload\/ url reject-img
 ^https?:\/\/mmgr\.gtimg\.com\/gjsmall\/qqpim\/public\/ios\/splash\/.+?\/\d{4}_\d{4} url reject-img
 ^https?://bk\.bingo\.qq\.com/bk/crx/data/videoAd.*$ url reject-dict
-###### T ######
+
+# > 贴吧全面去广告
+# hostname = tiebac.baidu.com
+^http:\/\/c\.tieba\.baidu\.com\/c\/f\/(excellent\/personalized|frs\/(generalTabList|page|threadlist)|pb\/(pic)?page)$ url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/baidu/tiebaJson.js
+^http:\/\/c\.tieba\.baidu\.com\/c\/f\/(excellent\/personalized|frs\/(generalTabList|page|threadlist)|pb\/(pic)?page)\?cmd url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/baidu/tiebaProto.js
+^http:\/\/c\.tieba\.baidu\.com\/c\/s\/sync$ url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/baidu/tiebaJson.js
+^https:\/\/tiebac\.baidu\.com\/tiebaads\/commonbatch\? url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/baidu/tiebaJson.js
+#------ T ------#
 
 
-###### U ######
-###### U ######
+#------ U ------#
+#------ U ------#
 
 
-###### V ######
-###### V ######
+#------ V ------#
+#------ V ------#
 
 
-###### W ######
+#------ W ------#
 # > 微信
 # hostname = mp.weixin.qq.com, weixin110.qq.com, security.wechat.com
 # 公众号文章下方广告
@@ -324,23 +352,33 @@
 ^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\? url script-response-body https://raw.githubusercontent.com/zZPiglet/Task/master/asset/UnblockURLinWeChat.js
 # 微信公众号去除商品推广
 ^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action url reject-dict
-###### W ######
+#------ W ------#
 
 
-###### X ######
-###### X ######
+#------ X ------#
+# > 闲鱼
+# hostname = gw.alicdn.com, acs.m.taobao.com
+^https:\/\/gw\.alicdn\.com\/mt\/ url reject
+^https:\/\/gw\.alicdn\.com\/tfs\/.+\d{3,4}-\d{4} url reject
+^https:\/\/gw\.alicdn\.com\/tps\/.+\d{3,4}-\d{4} url reject
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.taobao\.idle\.home\.welcome url reject
+#------ X ------#
 
 
 
-###### Y ######
+#------ Y ------#
 # > 一淘
 # hostname = acs.m.taobao.com
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash url reject
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise url reject
-###### Y ######
+
+# > 云闪付
+# hostname = wallet.95516.com
+^https:\/\/wallet\.95516\.com(:10533)?\/s\/wl\/icon\/large\/1 url reject
+#------ Y ------#
 
 
-###### Z ######
+#------ Z ------#
 # > 招商银行
 # hostname = webappcfg.paas.cmbchina.com
 # 开屏广告
@@ -379,7 +417,17 @@
 ^https?:\/\/.+\.amemv\.com\/.+app_log url reject-img
 ^https?:\/\/.+\.amemv\.com\/.+report url reject-img
 ^https?:\/\/.+\.amemv\.com\/.+stats url reject-img
-###### Z ######
+#------ Z ------#
 
 
-hostname = m.360buyimg.com, musical.com, open.e.kuaishou.com, ndstatic.cdn.bcebos.com, api2.helper.qq.com, cdn.poizon.com, 3gimg.qq.com, guide-acs.m.taobao.com, dsp-x.jd.com, dns.jd.com, pan.baidu.com, bdsp-x.jd.com, img.meituan.net, tiktokv.com, update.pan.baidu.com, hd.xiaojukeji.com, midc.cdn-static.abchina.com.cn, as.xiaojukeji.com, y.gtimg.cn, mp.weixin.qq.com, appconf.mail.163.com, discuz.gtimg.cn, api.m.jd.com, list-app-m.i4.cn, lives.l.qq.com, quanguo.mygolbs.com, freight.xiaojukeji.com, res.kfc.com.cn, mi.gdt.qq.com, mlife.jf365.boc.cn, peisongapi.meituan.com, wmapi.meituan.com, www.meituan.net, wx.mygolbs.com, down-cdn.dingtalk.com, acs.nlktj.com, qt.qq.com, security.wechat.com, cdb.meituan.com, p*.meituan.net, app.dewu.com, ct.xiaojukeji.com, mobile.yangkeduo.com, support.you.163.com, daijia.kuaidadi.com, s3plus.meituan.net, api.pinduoduo.com, amemv.com, common.diditaxi.com.cn, bk.bingo.qq.com, enjoy.cdn-static.abchina.com, fc-video.cdn.bcebos.com, mbs.boc.cn, webappcfg.paas.cmbchina.com, img14.360buyimg.com, mbasecc.bas.cmbchina.com, *.pstatp.com, vv.video.qq.com, api-access.pangolin-sdk-toutiao.com, is.snssdk.com, acs.m.taobao.com, dsp.toutiao.com, amdc.m.taobao.com, cloud.189.cn, zt-app.go189.cn, staticsns.cdn.bcebos.com, splashqqlive.gtimg.com, conf.diditaxi.com.cn, sh-gateway.shihuo.cn, wmapi.meituan.net, flowplus.meituan.net, qzonestyle.gtimg.cn, bla.gtimg.com, gql.reddit.com, pt-starimg.didistatic.com, *.beacon.qq.com, snssdk.com, api.yangkeduo.com, intellicc.bas.cmbchina.com, omgup*.xiaojukeji.com, issuecdn.baidupcs.com, res.xiaojukeji.com, mmgr.gtimg.com, pv.elife.icbc.com.cn, yunbusiness.ccb.com, img.alicdn.com, ssl.kohsocialapp.qq.com, gw.alicdn.com, mtteve.beacon.qq.com, home.mi.com, imgcache.qq.com, rp.hpplay.cn, ms.jr.jd.com, static.shihuocdn.cn, weixin110.qq.com, apimobile.meituan.net, poplayer.template.alibaba.com, btrace.qq.com
+#------ # ------#
+# > 12306
+# hostname = ad.12306.cn, mobile.12306.cn
+^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList url script-analyze-echo-response https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/12306.js
+^https:\/\/ad\.12306\.cn\/(ad\/mon\/mzc\?|res\/adfiles\/delivery\/) url reject
+^https:\/\/mobile\.12306\.cn\/otsmobile\/h5\/otsbussiness\/travelPageImg\/ url reject
+^https:\/\/mobile\.12306\.cn\/otsmobile\/ url script-response-header https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/header.js
+#------ # ------#
+
+
+hostname = m.360buyimg.com, musical.com, open.e.kuaishou.com, ndstatic.cdn.bcebos.com, api2.helper.qq.com, cdn.poizon.com, www1.elecfans.com, 3gimg.qq.com, guide-acs.m.taobao.com, mobile.12306.cn, dsp-x.jd.com, dns.jd.com, pan.baidu.com, bdsp-x.jd.com, img.meituan.net, tiktokv.com, update.pan.baidu.com, hd.xiaojukeji.com, midc.cdn-static.abchina.com.cn, as.xiaojukeji.com, y.gtimg.cn, mp.weixin.qq.com, fuss10.elemecdn.com, appconf.mail.163.com, discuz.gtimg.cn, api.m.jd.com, list-app-m.i4.cn, lives.l.qq.com, quanguo.mygolbs.com, freight.xiaojukeji.com, app-gw.csdn.net, res.kfc.com.cn, mi.gdt.qq.com, mlife.jf365.boc.cn, peisongapi.meituan.com, wmapi.meituan.com, www.meituan.net, wx.mygolbs.com, down-cdn.dingtalk.com, acs.nlktj.com, qt.qq.com, api.alipan.com, security.wechat.com, cdb.meituan.com, p*.meituan.net, app.dewu.com, ct.xiaojukeji.com, mobile.yangkeduo.com, support.you.163.com, daijia.kuaidadi.com, s3plus.meituan.net, api.pinduoduo.com, amemv.com, common.diditaxi.com.cn, bk.bingo.qq.com, enjoy.cdn-static.abchina.com, fc-video.cdn.bcebos.com, mbs.boc.cn, webappcfg.paas.cmbchina.com, img14.360buyimg.com, mbasecc.bas.cmbchina.com, *.pstatp.com, vv.video.qq.com, elemecdn.com, api-access.pangolin-sdk-toutiao.com, is.snssdk.com, acs.m.taobao.com, dsp.toutiao.com, amdc.m.taobao.com, member.alipan.com, cloud.189.cn, zt-app.go189.cn, staticsns.cdn.bcebos.com, splashqqlive.gtimg.com, ad.12306.cn, conf.diditaxi.com.cn, sh-gateway.shihuo.cn, wallet.95516.com, wmapi.meituan.net, flowplus.meituan.net, qzonestyle.gtimg.cn, bla.gtimg.com, gql.reddit.com, pt-starimg.didistatic.com, *.beacon.qq.com, snssdk.com, api.yangkeduo.com, intellicc.bas.cmbchina.com, omgup*.xiaojukeji.com, issuecdn.baidupcs.com, gab.122.gov.cn, res.xiaojukeji.com, mmgr.gtimg.com, pv.elife.icbc.com.cn, yunbusiness.ccb.com, img.alicdn.com, ssl.kohsocialapp.qq.com, gw.alicdn.com, tiebac.baidu.com, mtteve.beacon.qq.com, home.mi.com, imgcache.qq.com, rp.hpplay.cn, ms.jr.jd.com, static.shihuocdn.cn, weixin110.qq.com, apimobile.meituan.net, poplayer.template.alibaba.com, btrace.qq.com
