@@ -1,0 +1,22 @@
+#!name=YouTube
+#!desc=YouTube去广告
+#!homepage=https://www.github.com/cnowse
+#!author=Jeong Geol
+#!icon=https://raw.githubusercontent.com/cnowse/qsc/master/loon/icon/YouTube.png
+
+[Rewrite]
+
+# 播放页广告
+^https:\/\/[\w-]+\.googlevideo\.com\/initplayback\?.+&oad reject-dict
+
+[Script]
+
+# 请求体
+http-request ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|reel\/reel_watch_sequence) script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/youtube/request.js, requires-body=true, timeout=10, tag=request
+
+# 响应体
+http-response ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting) script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/youtube/response.js, requires-body=true, timeout=10, tag=response
+
+[MITM]
+
+hostname = rr*.googlevideo.com, youtubei.googleapis.com
