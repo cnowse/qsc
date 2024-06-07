@@ -111,5 +111,72 @@
 ^https?:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner url reject
 ^https?:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation url reject
 
+# > YouTube
+# hostname = rr*.googlevideo.com, youtubei.googleapis.com
+# 播放页广告
+^https:\/\/rr[\w-]+\.googlevideo\.com\/initplayback\? url reject-dict
 
-hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
+# > 喜马拉雅
+# hostname = *.xima*.*.com
+# 修复轮播Ad失效Bug
+^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF url reject
+# 播放页_Live
+^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\/ url reject
+# MyInfo红点提醒
+^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list url reject
+# 屏蔽大红包Tips
+^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status url reject
+# 屏蔽gif弹窗Ad
+^https?:\/\/.*\.xmcdn\.com\/\w{8}\/\w{4}-\w{16}\/.+gif$ url reject
+# gslb
+^https?:\/\/gslb.*\.xima.*\.com\/ url reject
+# 屏蔽Aged请求
+^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query) url reject
+# 部分Tab弹窗
+^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant url reject
+# 屏蔽红点提示
+^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread url reject
+# 屏蔽minor请求
+^https?:\/\/.*\.xima.*\.com/mobile-user/minorProtection/pop url reject
+# 屏蔽隐私搜集
+^https?:\/\/.*\.xima.*\.com\/collector\/xl\/v\d url reject
+# 屏蔽版本更新
+^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck url reject
+# 屏蔽开屏广告
+^https?:\/\/(adse\.wsa|adse|adbehavior|xdcs-collector)\.xima.*\.com\/.* url reject
+# 屏蔽位置请求
+^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location url reject
+# 屏蔽热搜词
+^https?:\/\/.*\.xima.*\.com\/hotWord url reject
+# 屏蔽搜索框定时_Ad
+^https?:\/\/.*\.xima.*\.com\/(hub)?guideWord url reject
+# 屏蔽实时Ad请求
+^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime url reject
+# 屏蔽ting_Ad
+^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)? url reject
+
+# > 小红书
+# hostname = edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com
+# 惊喜弹窗
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/surprisebox\/(get_style|open|submit_action) url reject-dict
+^https?:\/\/www\.xiaohongshu\.com\/api\/marketing\/box\/trigger\? url reject-dict
+# 信息流
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/note\/guide\? url reject-dict
+^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/(v\d\/ads\/resource|v2\/hey\/\w+\/hey_gallery) url reject-dict
+# 评论区用户id置空
+https://edith.xiaohongshu.com/api/sns/v\d/note/comment/list url response-body red_id response-body fmz200
+# 评论区图片水印
+https://ci.xiaohongshu.com/system_config/watermark url reject-img
+# 笔记创作推荐
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/guide\/user_banner url reject-dict
+
+# > 懒人听书
+# hostname = 118.178.214.118, dapis.mting.info, display.wting.info
+^https?:\/\/118\.178\.214\.118\/yyting\/advertclient\/ClientAdvertList\.action url reject-img
+^https?:\/\/dapis\.mting\.info\/yyting\/advertclient\/ClientAdvertList\.action url reject-img
+^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action url reject
+^https?:\/\/display\.wting\.info\/.*.jpeg url reject-200
+
+
+
+hostname = 118.178.214.118, dapis.mting.info, display.wting.info, edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com, *.xima*.*.com, rr*.googlevideo.com, api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
