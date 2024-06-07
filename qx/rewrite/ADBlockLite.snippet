@@ -81,5 +81,35 @@
 ^https?:\/\/.+\.amemv\.com\/.+report url reject-img
 ^https?:\/\/.+\.amemv\.com\/.+stats url reject-img
 
+# > 知乎
+# hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com
+^https?:\/\/api\.zhihu\.com\/commercial_api\/(banners_v3\/app_topstory_banner|launch_v2|real_time_launch_v2) url reject-dict
+^https?:\/\/api\.zhihu\.com\/content-distribution-core\/bubble\/common\/settings url reject-dict
+^https?:\/\/api\.zhihu\.com\/(moments\/lastread|drama\/hot-drama-list) url reject-dict
+^https?:\/\/api\.zhihu\.com\/root\/window url reject-dict
+# 我的页面 项目列表,会员卡片,更多卡片
+^https?:\/\/api\.zhihu\.com\/me\/guides url reject-dict
+^https?:\/\/api\.zhihu\.com\/unlimited\/go\/my_card url reject
+^https?:\/\/www\.zhihu\.com\/appview\/v2\/zhmore url reject
+# 搜索页 关键词,猜你想搜
+^https?:\/\/api\.zhihu\.com\/feed\/render\/revisit\/current_reading url reject-dict
+^https?:\/\/api\.zhihu\.com\/search\/preset_words url reject-dict
+^https?:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? url response-body "recommend_queries":\{.+\} response-body "recommend_queries":{}
+^https?:\/\/www\.zhihu\.com\/api\/v4\/search\/related_queries\/(answer|article)\/\d+ url reject-dict
+# 回答详情页,评论区顶部,下一个回答
+^https?:\/\/api\.zhihu\.com\/comment_v5\/answers\/\d+\/list-headers url reject-dict
+^https?:\/\/api\.zhihu\.com\/v5\.1\/topics\/answer\/\d+\/relation url reject-dict
+# 其他,服务器推送配置
+^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config url reject
+^https?:\/\/api\.zhihu\.com\/ad-style-service\/request url reject-dict
+^https?:\/\/appcloud2\.zhihu\.com\/v3\/resource\?group_name=mp url reject-dict
+# 网页版去广告
+^https?:\/\/api\.zhihu\.com\/distribute\/rhea\/qa_ad_card\/h5\/recommendation\? url reject-dict
+^https?:\/\/www\.zhihu\.com\/api\/v4\/hot_recommendation url reject
+^https?:\/\/www\.zhihu\.com\/api\/v4\/mcn\/v2\/linkcards\? url reject
+^https?:\/\/www\.zhihu\.com\/api\/v4/(questions|anwsers)\/\d+/related-readings url reject
+^https?:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner url reject
+^https?:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation url reject
 
-hostname = *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
+
+hostname = api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
