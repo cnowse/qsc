@@ -177,6 +177,20 @@ https://ci.xiaohongshu.com/system_config/watermark url reject-img
 ^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action url reject
 ^https?:\/\/display\.wting\.info\/.*.jpeg url reject-200
 
+# > 哔哩哔哩
+# hostname = app.bilibili.com, api.bilibili.com, api.live.bilibili.com, grpc.biliapi.net
+^https?:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? url reject-dict
+^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.interface\.v1\.Search\/DefaultWords url reject-dict
+# 满意度调研
+^https?:\/\/api\.bilibili\.com\/x\/v2\/dm\/qoe\/show\? url reject-dict
+# 开屏广告 //app.bilibili.com
+^https?:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH url reject-dict
+^https?:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH url reject-dict
+^https?:\/\/api\.bilibili\.com\/x\/mengqi\/v1\/resource\? url reject-dict
+# IP请求,地理位置请求 //api.bilibili.com
+^https?:\/\/api\.bilibili\.com\/x\/web-interface\/zone\?jsonp url reject-dict
+^https?:\/\/app\.bilibili\.com\/x\/resource\/ip url reject-dict
 
 
-hostname = 118.178.214.118, dapis.mting.info, display.wting.info, edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com, *.xima*.*.com, rr*.googlevideo.com, api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
+
+hostname = grpc.biliapi.net, app.bilibili.com, api.bilibili.com, api.live.bilibili.com, 118.178.214.118, dapis.mting.info, display.wting.info, edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com, *.xima*.*.com, rr*.googlevideo.com, api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
