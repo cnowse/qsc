@@ -195,6 +195,32 @@ https://ci.xiaohongshu.com/system_config/watermark url reject-img
 # hostname = wrapper.cyapi.cn, api.caiyunapp.com
 ^https?:\/\/api\.caiyunapp\.com\/v1\/activity url reject-dict
 
+# > keep
+# hostname = api.gotokeep.com, kad.gotokeep.com, static1.keepcdn.com
+^https?:\/\/static1\.keepcdn\.com\/ark_optimus\/202\d\/*\/*\/.*.(png|jpg) url reject-200
+# 屏蔽应用内弹窗
+^https?:\/\/api\.gotokeep\.com\/guide-webapp\/v\d\/popup\/getPopUp url reject
+# 屏蔽部分启动弹窗
+^https?:\/\/api\.gotokeep\.com\/kprime\/v\d\/popups\/primeGuide url reject
+# 屏蔽开屏广告请求
+^https?:\/\/kad\.gotokeep\.com\/op-engine-webapp\/v\d\/ad url reject
+# 屏蔽青少年弹窗
+^https?:\/\/api.gotokeep.com/cauchy/growth/init url reject
+# 屏蔽搜索栏自动填充词
+^https?:\/\/api\.gotokeep\.com\/search\/v\d\/default\/keyword\/list url reject
+# 屏蔽热词
+^https?:\/\/api\.gotokeep\.com\/search\/v\d\/hotword\/list url reject
+# 屏蔽hotCourse
+^https?:\/\/api\.gotokeep\.com\/search\/v\d\/hotCourse\/list url reject
+# 屏蔽adwebapp
+^https?:\/\/api\.gotokeep\.com\/op-engine-webapp\/v\d\/ad url reject
+# 屏蔽广告预加载
+^https?:\/\/api\.gotokeep\.com\/ads\/v\d\/ads\/preload url reject
+# 屏蔽adbox
+^https?:\/\/api\.gotokeep\.com\/training\/box\/config url reject
+# 屏蔽更新
+^https?:\/\/api\.gotokeep\.com\/anno\/v\d\/upgrade\/check url reject
 
 
-hostname = api.caiyunapp.com, grpc.biliapi.net, app.bilibili.com, api.bilibili.com, api.live.bilibili.com, 118.178.214.118, dapis.mting.info, display.wting.info, edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com, *.xima*.*.com, rr*.googlevideo.com, api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
+
+hostname = api.gotokeep.com, kad.gotokeep.com, static1.keepcdn.com, api.caiyunapp.com, grpc.biliapi.net, app.bilibili.com, api.bilibili.com, api.live.bilibili.com, 118.178.214.118, dapis.mting.info, display.wting.info, edith.xiaohongshu.com, www.xiaohongshu.com, ci.xiaohongshu.com, *.xima*.*.com, rr*.googlevideo.com, api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com, zhuanlan.zhihu.com, *.pstatp.com, amemv.com, musical.com, snssdk.com, tiktokv.com, dsp.toutiao.com, quanguo.mygolbs.com, wx.mygolbs.com, gql.reddit.com, home.mi.com, app-gw.csdn.net, list-app-m.i4.cn, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, update.pan.baidu.com, fc-video.cdn.bcebos.com, rp.hpplay.cn, btrace.qq.com, api2.helper.qq.com, *.beacon.qq.com, mi.gdt.qq.com, lives.l.qq.com, imgcache.qq.com, mtteve.beacon.qq.com, vv.video.qq.com, ssl.kohsocialapp.qq.com, qt.qq.com, 3gimg.qq.com, y.gtimg.cn, splashqqlive.gtimg.com, qzonestyle.gtimg.cn, discuz.gtimg.cn, bla.gtimg.com, mmgr.gtimg.com, bk.bingo.qq.com
